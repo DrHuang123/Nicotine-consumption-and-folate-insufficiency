@@ -1,4 +1,3 @@
-setwd('C:/Users/Weiyi/Downloads/survey')
 library(haven)
 library("survey")
 library("jtools")
@@ -10,8 +9,7 @@ library(dplyr)
 library(purrr) 
 library(EValue)
 
-
-orgdata<-read_sas('final.sas7bdat')
+orgdata<-read_sas('mydata.sas7bdat')
 
 orgdata$agecat <- NA
 orgdata$agecat[orgdata$RIDAGEYR<25]<-1
@@ -235,10 +233,8 @@ logit16 <- svyglm(smoking_new~orgdata.maritalcat, family=quasibinomial, design=n
 avg_comparisons(model=logit16,comparison = 'lnratioavg',transform = exp, wts = weights(logit16))
 
 
-
 ######## dietary folate intake (subset analysis)
 
-setwd("C:/Users/Weiyi/Downloads")
 DR1TFOLA1 <- read_xpt("folate/DR1TOT_C.xpt")
 DR1TFOLA2 <- read_xpt("folate/DR1TOT_D.xpt")
 DR1TFOLA3 <- read_xpt("folate/DR1TOT_E.xpt")
@@ -348,5 +344,6 @@ avg_comparisons(model=logit20, comparison = 'lnratioavg',transform = exp, wts = 
 
 
 #################
+
 
 
